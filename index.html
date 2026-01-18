@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="keywords" content="Printing Press Dadri, Flex Printing, Banner Printing, Sain Advertising, Visiting Card Printing">
+    <meta name="author" content="Sain Advertising Printing Press">
+    <meta name="robots" content="index, follow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sain Advertising Printing Press | Quality Printing Solutions</title>
@@ -13,12 +16,197 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         .logo-img {
-    height: 55px;
-    width: auto;
-}
-
-
+            height: 55px;
+            width: auto;
+        }
+        
+        /* New: Gallery Modal */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            margin-top: 50px;
+            animation: zoom 0.6s;
+        }
+        
+        @keyframes zoom {
+            from {transform: scale(0)} 
+            to {transform: scale(1)}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: var(--light);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+            position: relative;
+            padding: 0 10px;
+        }
+        
+        .testimonial-card p:before,
+        .testimonial-card p:after {
+            content: '"';
+            font-size: 24px;
+            color: var(--secondary);
+            position: absolute;
+        }
+        
+        .testimonial-card p:before {
+            top: -10px;
+            left: -5px;
+        }
+        
+        .testimonial-card p:after {
+            bottom: -20px;
+            right: -5px;
+        }
+        
+        .testimonial-card h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-card span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Back to Top Button */
+        #topBtn {
+            position: fixed;
+            bottom: 60px;
+            right: 600px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            border: none;
+            font-size: 20px;
+        }
+        
+        #topBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #topBtn:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Call Float Button */
+        .call-float {
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            background: #0573f1;
+            color: #fff;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        
+        .call-float:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+        
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 100px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #1ebe5d;
+            color: white;
+        }
+        
         :root {
             --primary: #1a237e;
             --secondary: #ff9800;
@@ -32,6 +220,7 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         h1, h2, h3, h4 {
@@ -77,29 +266,6 @@
         section {
             padding: 80px 0;
         }
-        .whatsapp-float{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    color: white;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    z-index: 9999;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: 0.3s;
-}
-
-.whatsapp-float:hover{
-    transform: scale(1.1);
-    background: #1ebe5d;
-}
-
 
         .btn {
             display: inline-block;
@@ -149,6 +315,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s;
         }
 
         .header-container {
@@ -322,6 +489,7 @@
             overflow: hidden;
             position: relative;
             height: 250px;
+            cursor: pointer;
         }
 
         .portfolio-item img {
@@ -440,11 +608,39 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+            outline: none;
         }
 
         .contact-form textarea {
             height: 150px;
             resize: vertical;
+        }
+        
+        .form-message {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
         }
 
         /* Footer */
@@ -473,6 +669,28 @@
 
         .footer-about p {
             opacity: 0.8;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
         }
 
         .footer-links h4,
@@ -525,6 +743,11 @@
             .hero {
                 padding: 150px 0 100px;
             }
+            
+            .whatsapp-float {
+                right: 30px;
+                bottom: 100px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -566,6 +789,11 @@
             .portfolio-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
+            
+            .call-float {
+                bottom: 30px;
+                right: 100px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -589,6 +817,17 @@
             h2 {
                 font-size: 1.8rem;
             }
+            
+            .call-float,
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+            
+            .whatsapp-float {
+                right: 90px;
+            }
         }
     </style>
 </head>
@@ -596,12 +835,10 @@
     <!-- Header & Navigation -->
     <header>
         <div class="container header-container">
-     <a href="#" class="logo">
-    <img src="logo.png" class="logo-img">
-    <div class="logo-text">SAIN  <span> PRINTING PRESS</span></div>
-</a>
-
-
+            <a href="#" class="logo">
+                <img src="logo.png" class="logo-img">
+                <div class="logo-text">SAIN <span>PRINTING PRESS</span></div>
+            </a>
             
             <div class="mobile-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
@@ -613,17 +850,34 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="tel:+1234567890" class="btn">Call Now</a></li>
+                    <li><a href="tel:9027811888" class="btn">Call Now</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
+    
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="gallery-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <!-- Back to Top Button -->
+    <button id="topBtn" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- Call Float Button -->
+    <a href="tel:9027811888" class="call-float">
+        <i class="fas fa-phone"></i>
+    </a>
+    
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Professional Printing Solutions</h1>
+            <h1>Advertising Printing Solutions</h1>
             <p>At Sain Advertising Printing Press, we deliver high-quality printing services for businesses and individuals. From business cards to large format printing, we bring your ideas to life with precision and creativity.</p>
             <a href="#contact" class="btn">Get a Quote</a>
             <a href="#services" class="btn btn-outline">Our Services</a>
@@ -728,7 +982,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="advertising">
-                    <img src="https://small-bizsense.com/wp-content/uploads/2019/11/how-to-use-social-media-advertising.jpg">
+                    <img src="https://small-bizsense.com/wp-content/uploads/2019/11/how-to-use-social-media-advertising.jpg" alt="Brochures">
                     <div class="portfolio-overlay">
                         <h3>Brochures</h3>
                         <p>Tri-fold marketing brochures</p>
@@ -760,11 +1014,41 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="advertising">
-                    <img src="https://img.freepik.com/premium-photo/3d-face-abstract-futuristic-with-artificial-intelligence-digital-pixels-ai-generated-man-blue-backdrop-graphic-future-human-head-design-facial-recognition-creative-design_590464-162326.jpg">
+                    <img src="https://img.freepik.com/premium-photo/3d-face-abstract-futuristic-with-artificial-intelligence-digital-pixels-ai-generated-man-blue-backdrop-graphic-future-human-head-design-facial-recognition-creative-design_590464-162326.jpg" alt="Event Posters">
                     <div class="portfolio-overlay">
                         <h3>Event Posters</h3>
                         <p>Large format posters for promotional events</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title-center">
+                <h2>What Our Customers Say</h2>
+                <p>Trusted by businesses and individuals in Dadri</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>Excellent quality flex printing and fast delivery. Highly recommended for all printing needs in Dadri!</p>
+                    <h4>Rohit Sharma</h4>
+                    <span>Local Business Owner</span>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>Very professional work. Visiting cards and banners were perfect. Will definitely work with them again.</p>
+                    <h4>Pooja Verma</h4>
+                    <span>Marketing Manager</span>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>Best printing press in Dadri. Affordable prices, great quality, and excellent customer support.</p>
+                    <h4>Amit Kumar</h4>
+                    <span>Event Organizer</span>
                 </div>
             </div>
         </div>
@@ -776,8 +1060,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>About Sain Advertising Printing Press</h2>
-                    <p>[Sain advertising printing press] | High-Quality Printing & Design.
-Bringing your brand to life with vibrant colors and sharp details. From business essentials to custom signage, we deliver premium results on time, every time. 🚀 Ink Your Ideas, Print Your Vision. "</p>
+                    <p>Sain Advertising Printing Press | High-Quality Printing & Design. Bringing your brand to life with vibrant colors and sharp details. From business essentials to custom signage, we deliver premium results on time, every time. 🚀 Ink Your Ideas, Print Your Vision.</p>
                     <p>We combine traditional craftsmanship with modern technology to deliver exceptional results for every project. Our team of skilled professionals is dedicated to understanding your needs and delivering prints that exceed expectations.</p>
                     
                     <div class="about-features">
@@ -837,7 +1120,7 @@ Bringing your brand to life with vibrant colors and sharp details. From business
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Our Location</h4>
-                            <p>Basement of HDFC Bank  GT Road Dadri<br>Gokul Nagar  203207 (UP)</p>
+                            <p>Basement of HDFC Bank GT Road Dadri<br>Gautam Budh Nagar 201318 (UP)</p>
                         </div>
                     </div>
                     
@@ -846,8 +1129,7 @@ Bringing your brand to life with vibrant colors and sharp details. From business
                         <div>
                             <h4>Phone Number</h4>
                             <p>9027811888</p>
-                            <p>9548328898</p>
-
+                            <p>9540328898</p>
                         </div>
                     </div>
                     
@@ -855,7 +1137,7 @@ Bringing your brand to life with vibrant colors and sharp details. From business
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email Address</h4>
-                            <p>sainprinting@gmail.com</p>
+                            <p>sainadvertising1986@gmail.com</p>
                         </div>
                     </div>
                     
@@ -869,26 +1151,26 @@ Bringing your brand to life with vibrant colors and sharp details. From business
                 </div>
                 
                 <div class="contact-form">
+                    <div id="formMessage" class="form-message"></div>
                     <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Your Phone Number">
-                        <input type="text" placeholder="Subject">
-                        <textarea placeholder="Your Message" required></textarea>
+                        <input type="text" placeholder="Your Name" required id="name">
+                        <input type="email" placeholder="Your Email" required id="email">
+                        <input type="tel" placeholder="Your Phone Number" id="phone">
+                        <input type="text" placeholder="Subject" id="subject">
+                        <textarea placeholder="Your Message" required id="message"></textarea>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+    
     <!-- WhatsApp Chat Button -->
-<a href="https://wa.me/919027811888?text=Hello%20Sain%20Press,%20I%20need%20flex%20printing
-"
-   class="whatsapp-float"
-   target="_blank">
-   <i class="fab fa-whatsapp"></i>
-</a>
-
+    <a href="https://wa.me/919540328898?text=Hello%20Sain%20Press,%20I%20need%20printing%20services" 
+       class="whatsapp-float" 
+       target="_blank">
+       <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Footer -->
     <footer>
@@ -929,7 +1211,7 @@ Bringing your brand to life with vibrant colors and sharp details. From business
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 Sain Advertising Printing Press. All rights reserved.</p>
+                <p>&copy; 2025 Sain Advertising Printing Press. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -951,6 +1233,47 @@ Bringing your brand to life with vibrant colors and sharp details. From business
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Active Navigation Highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('#navMenu a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Back to Top Button
+        const topBtn = document.getElementById('topBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        });
+        
+        topBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
         
@@ -977,22 +1300,80 @@ Bringing your brand to life with vibrant colors and sharp details. From business
             });
         });
         
-        // Form Submission
+        // Image Gallery Modal
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
+        
+        document.querySelectorAll('.portfolio-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                modal.style.display = 'block';
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside the image
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Form Submission with Validation
         const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Get form values
-            const name = contactForm.querySelector('input[type="text"]').value;
-            const email = contactForm.querySelector('input[type="email"]').value;
-            const message = contactForm.querySelector('textarea').value;
+            // Basic validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
             
-            // In a real implementation, you would send this data to a server
-            // For this demo, we'll just show an alert
-            alert(`Thank you, ${name}! Your message has been received. We'll contact you at ${email} soon.`);
+            if (!name || !email || !message) {
+                formMessage.textContent = 'Please fill in all required fields.';
+                formMessage.className = 'form-message error';
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.className = 'form-message error';
+                return;
+            }
+            
+            // Simulate form submission
+            formMessage.textContent = 'Thank you! Your message has been sent. We will contact you soon.';
+            formMessage.className = 'form-message success';
             
             // Reset form
             contactForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            }
         });
         
         // Smooth scrolling for navigation links
@@ -1013,13 +1394,11 @@ Bringing your brand to life with vibrant colors and sharp details. From business
             });
         });
         
-        // Header scroll effect
+        // Auto-hide mobile menu on scroll
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
     </script>

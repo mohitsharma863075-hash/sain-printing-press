@@ -488,7 +488,7 @@
         #topBtn {
             position: fixed;
             bottom: 60px;
-            right: 600px;
+            right: 30px;
             background: var(--primary);
             color: white;
             width: 50px;
@@ -772,7 +772,7 @@
             opacity: 0.9;
         }
 
-        /* Services Section - FLIP CARD STYLES */
+        /* Services Section - FIXED FLIP CARD STYLES */
         .services {
             background-color: var(--light);
         }
@@ -791,13 +791,28 @@
             height: 320px;
             border-radius: 8px;
             cursor: pointer;
+            width: 100%;
+        }
+
+        /* Mobile-specific flip card */
+        @media (max-width: 768px) {
+            .flip-card {
+                height: 300px;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
 
         /* Flip Card Inner Container */
         .flip-card-inner {
             position: relative;
-            width: 150%;
-            height: 150%;
+            width: 100%;
+            height: 100%;
             text-align: center;
             transition: transform 0.8s;
             transform-style: preserve-3d;
@@ -805,16 +820,23 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* Flip on hover */
-        .flip-card:hover .flip-card-inner {
+        /* Flip on hover for desktop */
+        @media (min-width: 769px) {
+            .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+
+        /* Mobile flip on click */
+        .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
 
         /* Front and Back of Card */
         .flip-card-front, .flip-card-back {
             position: absolute;
-            width: 150%;
-            height: 150%;
+            width: 100%;
+            height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             border-radius: 8px;
@@ -829,7 +851,14 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 25px;
+        }
+
+        /* Mobile front adjustments */
+        @media (max-width: 768px) {
+            .flip-card-front {
+                padding: 20px;
+            }
         }
 
         /* Service Icon */
@@ -847,15 +876,58 @@
             transition: all 0.3s;
         }
 
+        /* Mobile icon adjustments */
+        @media (max-width: 768px) {
+            .service-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+        }
+
         .flip-card-front h3 {
             color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.5rem;
         }
 
+        /* Mobile heading adjustments */
+        @media (max-width: 768px) {
+            .flip-card-front h3 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+            }
+        }
+
         .flip-card-front p {
             color: var(--gray);
             font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Mobile text adjustments */
+        @media (max-width: 768px) {
+            .flip-card-front p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+        }
+
+        .flip-hint {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Mobile hint text */
+        @media (max-width: 768px) {
+            .flip-hint {
+                font-size: 0.85rem;
+                margin-top: 8px;
+            }
         }
 
         /* Back of Card */
@@ -867,20 +939,46 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
+            overflow-y: auto;
+        }
+
+        /* Mobile back adjustments */
+        @media (max-width: 768px) {
+            .flip-card-back {
+                padding: 20px;
+                justify-content: flex-start;
+                padding-top: 30px;
+            }
         }
 
         .flip-card-back h3 {
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-size: 1.5rem;
+        }
+
+        /* Mobile back heading */
+        @media (max-width: 768px) {
+            .flip-card-back h3 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+            }
         }
 
         .flip-card-back p {
             margin-bottom: 15px;
             font-size: 0.95rem;
             line-height: 1.5;
+        }
+
+        /* Mobile back text */
+        @media (max-width: 768px) {
+            .flip-card-back p {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+            }
         }
 
         .service-features {
@@ -891,11 +989,29 @@
             padding: 0 10px;
         }
 
+        /* Mobile features */
+        @media (max-width: 768px) {
+            .service-features {
+                margin: 12px 0;
+                padding: 0 5px;
+            }
+        }
+
         .service-features li {
             margin-bottom: 8px;
             font-size: 0.9rem;
             position: relative;
             padding-left: 25px;
+            line-height: 1.4;
+        }
+
+        /* Mobile feature items */
+        @media (max-width: 768px) {
+            .service-features li {
+                margin-bottom: 6px;
+                font-size: 0.85rem;
+                padding-left: 22px;
+            }
         }
 
         .service-features li:before {
@@ -910,13 +1026,23 @@
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 10px 20px;
             border-radius: 4px;
             font-weight: 600;
             margin-top: 15px;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 0.9rem;
+            min-height: 44px; /* Minimum touch target size */
+        }
+
+        /* Mobile button */
+        @media (max-width: 768px) {
+            .service-btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+                margin-top: 12px;
+            }
         }
 
         .service-btn:hover {
@@ -1235,6 +1361,10 @@
             .pricing-card.popular:hover {
                 transform: translateY(-10px);
             }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -1273,8 +1403,12 @@
                 font-size: 2.2rem;
             }
             
+            .hero p {
+                font-size: 1rem;
+            }
+            
             .portfolio-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: 1fr;
             }
             
             .call-float {
@@ -1287,12 +1421,11 @@
                 right: 30px;
             }
             
-            .flip-card {
-                height: 280px;
-            }
-            
             .services-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: 1fr;
+                max-width: 350px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .newsletter-form {
@@ -1302,6 +1435,11 @@
             .newsletter-form input {
                 min-width: 100%;
                 margin-bottom: 10px;
+            }
+            
+            #topBtn {
+                bottom: 100px;
+                right: 20px;
             }
         }
 
@@ -1315,7 +1453,7 @@
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             
             .services-grid,
@@ -1347,13 +1485,43 @@
             }
             
             .flip-card {
-                height: 320px;
-                max-width: 350px;
-                margin: 0 auto;
+                height: 300px;
+                max-width: 100%;
             }
             
             .stat-number {
                 font-size: 2.5rem;
+            }
+            
+            .pricing-card {
+                max-width: 100%;
+            }
+            
+            #topBtn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                bottom: 90px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .flip-card {
+                height: 280px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            
+            .flip-card-front h3 {
+                font-size: 1.3rem;
+            }
+            
+            .flip-card-front p {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -1443,18 +1611,6 @@
             <a href="#services" class="btn btn-outline">Our Services</a>
         </div>
     </section>
-    
-    <!-- Statistics Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                 
-                <div class="stat-item">
-            </div>
-        </div>
-    </section>
-
     <!-- Services Section with Flip Cards -->
     <section class="services" id="services">
         <div class="container">
@@ -1473,7 +1629,7 @@
                             </div>
                             <h3>Business Printing</h3>
                             <p>Professional business cards, letterheads, envelopes, and corporate stationery.</p>
-                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                            <span class="flip-hint">Tap to see details →</span>
                         </div>
                         <div class="flip-card-back">
                             <h3>Business Printing</h3>
@@ -1498,7 +1654,7 @@
                             </div>
                             <h3>Advertising Materials</h3>
                             <p>Flyers, brochures, posters, and banners to promote your brand effectively.</p>
-                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                            <span class="flip-hint">Tap to see details →</span>
                         </div>
                         <div class="flip-card-back">
                             <h3>Advertising Materials</h3>
@@ -1523,7 +1679,7 @@
                             </div>
                             <h3>Garment Printing</h3>
                             <p>Custom t-shirt printing, uniforms, and promotional apparel with vibrant colors.</p>
-                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                            <span class="flip-hint">Tap to see details →</span>
                         </div>
                         <div class="flip-card-back">
                             <h3>Garment Printing</h3>
@@ -1548,7 +1704,7 @@
                             </div>
                             <h3>Signage & Displays</h3>
                             <p>Indoor and outdoor signs, exhibition displays, vehicle graphics, and window decals.</p>
-                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                            <span class="flip-hint">Tap to see details →</span>
                         </div>
                         <div class="flip-card-back">
                             <h3>Signage & Displays</h3>
@@ -1573,7 +1729,7 @@
                             </div>
                             <h3>Packaging Printing</h3>
                             <p>Custom boxes, labels, and packaging solutions that protect and promote your products.</p>
-                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                            <span class="flip-hint">Tap to see details →</span>
                         </div>
                         <div class="flip-card-back">
                             <h3>Packaging Printing</h3>
@@ -1598,7 +1754,7 @@
                             </div>
                             <h3>Promotional Items</h3>
                             <p>Custom mugs, pens, calendars, and other promotional products to keep your brand visible.</p>
-                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                            <span class="flip-hint">Tap to see details →</span>
                         </div>
                         <div class="flip-card-back">
                             <h3>Promotional Items</h3>
@@ -2084,12 +2240,14 @@
             
             statNumbers.forEach(statNumber => {
                 const target = parseInt(statNumber.getAttribute('data-count'));
-                const count = parseInt(statNumber.textContent);
+                let count = parseInt(statNumber.textContent);
                 const increment = Math.ceil(target / speed);
                 
                 if(count < target) {
-                    statNumber.textContent = count + increment;
-                    setTimeout(animateCounter, 10);
+                    count += increment;
+                    if(count > target) count = target;
+                    statNumber.textContent = count;
+                    setTimeout(() => animateCounter(), 10);
                 } else {
                     statNumber.textContent = target;
                 }
@@ -2106,7 +2264,7 @@
             });
         }, { threshold: 0.5 });
 
-        document.querySelector('.stats-section').addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             observer.observe(document.querySelector('.stats-section'));
         });
 
@@ -2170,8 +2328,111 @@
                     <p><strong>Sample Available:</strong> Yes<br>
                     <strong>Bulk Discounts:</strong> Available for orders above 1000 pieces</p>
                 `
+            },
+            3: {
+                title: "Garment Printing",
+                content: `
+                    <h3>Custom Garment Printing</h3>
+                    <p>Promote your brand or create unique apparel with our high-quality garment printing services.</p>
+                    
+                    <h4>Our Garment Printing Options:</h4>
+                    <ul>
+                        <li><strong>T-Shirt Printing:</strong> Cotton, polyester, and blended fabrics</li>
+                        <li><strong>Uniforms & Workwear:</strong> Corporate uniforms with logo embroidery</li>
+                        <li><strong>Promotional Apparel:</strong> Hoodies, caps, and bags</li>
+                        <li><strong>Event Clothing:</strong> Custom shirts for events and occasions</li>
+                    </ul>
+                    
+                    <h4>Printing Techniques:</h4>
+                    <ul>
+                        <li>Screen Printing</li>
+                        <li>Digital Direct-to-Garment</li>
+                        <li>Heat Transfer</li>
+                        <li>Embroidery</li>
+                    </ul>
+                    
+                    <p><strong>Minimum Order:</strong> 10 pieces<br>
+                    <strong>Turnaround Time:</strong> 3-5 business days</p>
+                `
+            },
+            4: {
+                title: "Signage & Displays",
+                content: `
+                    <h3>Professional Signage Solutions</h3>
+                    <p>Maximize your visibility with our custom signage and display solutions for indoor and outdoor use.</p>
+                    
+                    <h4>Signage Types:</h4>
+                    <ul>
+                        <li><strong>Indoor Signs:</strong> Acrylic, foam, and metal signs</li>
+                        <li><strong>Outdoor Signs:</strong> Weather-resistant banners and hoardings</li>
+                        <li><strong>Vehicle Graphics:</strong> Car, truck, and bus wraps</li>
+                        <li><strong>Window Decals:</strong> Perforated and clear vinyl</li>
+                    </ul>
+                    
+                    <h4>Materials Available:</h4>
+                    <ul>
+                        <li>Vinyl Banners</li>
+                        <li>Acrylic Sheets</li>
+                        <li>Aluminum Composite</li>
+                        <li>Corrugated Plastic</li>
+                    </ul>
+                    
+                    <p><strong>Installation Service:</strong> Available<br>
+                    <strong>Weatherproof Guarantee:</strong> 1 year</p>
+                `
+            },
+            5: {
+                title: "Packaging Printing",
+                content: `
+                    <h3>Custom Packaging Solutions</h3>
+                    <p>Enhance your product presentation with our custom packaging printing services.</p>
+                    
+                    <h4>Packaging Types:</h4>
+                    <ul>
+                        <li><strong>Product Boxes:</strong> Custom sized boxes with printing</li>
+                        <li><strong>Labels & Stickers:</strong> Product labels and packaging stickers</li>
+                        <li><strong>Packaging Design:</strong> Complete packaging design service</li>
+                        <li><strong>Custom Packaging:</strong> Unique packaging solutions</li>
+                    </ul>
+                    
+                    <h4>Special Features:</h4>
+                    <ul>
+                        <li>Matte/Gloss Lamination</li>
+                        <li>Spot UV Coating</li>
+                        <li>Embossing/Debossing</li>
+                        <li>Foil Stamping</li>
+                    </ul>
+                    
+                    <p><strong>Minimum Order:</strong> 50 pieces<br>
+                    <strong>Design Service:</strong> Included</p>
+                `
+            },
+            6: {
+                title: "Promotional Items",
+                content: `
+                    <h3>Branded Promotional Products</h3>
+                    <p>Keep your brand visible with our range of custom promotional products.</p>
+                    
+                    <h4>Product Range:</h4>
+                    <ul>
+                        <li><strong>Mugs & Drinkware:</strong> Ceramic mugs, travel mugs, and water bottles</li>
+                        <li><strong>Pens & Stationery:</strong> Custom pens, notebooks, and diaries</li>
+                        <li><strong>Calendars & Diaries:</strong> Wall calendars, desk calendars, and planners</li>
+                        <li><strong>Custom Giveaways:</strong> Keychains, magnets, and USB drives</li>
+                    </ul>
+                    
+                    <h4>Printing Methods:</h4>
+                    <ul>
+                        <li>Screen Printing</li>
+                        <li>Pad Printing</li>
+                        <li>Laser Engraving</li>
+                        <li>Heat Transfer</li>
+                    </ul>
+                    
+                    <p><strong>Minimum Order:</strong> 25 pieces<br>
+                    <strong>Bulk Discounts:</strong> Available</p>
+                `
             }
-            // Add details for other services (3-6) similarly
         };
 
         serviceButtons.forEach(button => {
@@ -2419,9 +2680,40 @@
             card.addEventListener('click', function() {
                 // On mobile, we want to flip on click instead of hover
                 if (window.innerWidth <= 768) {
-                    this.querySelector('.flip-card-inner').classList.toggle('flipped');
+                    // Remove flipped class from all other cards
+                    document.querySelectorAll('.flip-card').forEach(otherCard => {
+                        if (otherCard !== this) {
+                            otherCard.classList.remove('flipped');
+                        }
+                    });
+                    
+                    // Toggle flipped class on clicked card
+                    this.classList.toggle('flipped');
                 }
             });
+        });
+        
+        // Close flip card when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                const flipCards = document.querySelectorAll('.flip-card');
+                const clickedElement = e.target;
+                
+                // Check if click was outside any flip card
+                let clickedInsideFlipCard = false;
+                flipCards.forEach(card => {
+                    if (card.contains(clickedElement)) {
+                        clickedInsideFlipCard = true;
+                    }
+                });
+                
+                // If clicked outside, close all flip cards
+                if (!clickedInsideFlipCard) {
+                    flipCards.forEach(card => {
+                        card.classList.remove('flipped');
+                    });
+                }
+            }
         });
         
         // Start counter animation when stats section is in view

@@ -772,7 +772,7 @@
             opacity: 0.9;
         }
 
-        /* Services Section - FIXED FLIP CARD STYLES */
+        /* Services Section - REGULAR CARDS */
         .services {
             background-color: var(--light);
         }
@@ -784,81 +784,28 @@
             margin-top: 40px;
         }
 
-        /* Flip Card Container */
-        .flip-card {
-            background-color: transparent;
-            perspective: 1000px;
-            height: 320px;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        /* Mobile-specific flip card */
-        @media (max-width: 768px) {
-            .flip-card {
-                height: 300px;
-                max-width: 350px;
-                margin: 0 auto;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        /* Flip Card Inner Container */
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Flip on hover for desktop */
-        @media (min-width: 769px) {
-            .flip-card:hover .flip-card-inner {
-                transform: rotateY(180deg);
-            }
-        }
-
-        /* Mobile flip on click */
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        /* Front and Back of Card */
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+        /* Service Card */
+        .service-card {
+            background-color: white;
             border-radius: 8px;
             overflow: hidden;
-        }
-
-        /* Front of Card */
-        .flip-card-front {
-            background-color: white;
-            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
         }
 
-        /* Mobile front adjustments */
-        @media (max-width: 768px) {
-            .flip-card-front {
-                padding: 20px;
-            }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Service Icon */
@@ -876,125 +823,29 @@
             transition: all 0.3s;
         }
 
-        /* Mobile icon adjustments */
-        @media (max-width: 768px) {
-            .service-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 2.2rem;
-                margin-bottom: 15px;
-            }
+        .service-card:hover .service-icon {
+            background-color: var(--secondary);
+            transform: scale(1.1);
         }
 
-        .flip-card-front h3 {
+        .service-card h3 {
             color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.5rem;
         }
 
-        /* Mobile heading adjustments */
-        @media (max-width: 768px) {
-            .flip-card-front h3 {
-                font-size: 1.4rem;
-                margin-bottom: 12px;
-            }
-        }
-
-        .flip-card-front p {
+        .service-card p {
             color: var(--gray);
             font-size: 0.95rem;
             line-height: 1.5;
-        }
-
-        /* Mobile text adjustments */
-        @media (max-width: 768px) {
-            .flip-card-front p {
-                font-size: 0.9rem;
-                line-height: 1.4;
-            }
-        }
-
-        .flip-hint {
-            color: var(--secondary);
-            font-size: 0.9rem;
-            margin-top: 10px;
-            font-weight: 600;
-            display: block;
-        }
-
-        /* Mobile hint text */
-        @media (max-width: 768px) {
-            .flip-hint {
-                font-size: 0.85rem;
-                margin-top: 8px;
-            }
-        }
-
-        /* Back of Card */
-        .flip-card-back {
-            background-color: var(--primary);
-            color: white;
-            transform: rotateY(180deg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
-            text-align: center;
-            overflow-y: auto;
-        }
-
-        /* Mobile back adjustments */
-        @media (max-width: 768px) {
-            .flip-card-back {
-                padding: 20px;
-                justify-content: flex-start;
-                padding-top: 30px;
-            }
-        }
-
-        .flip-card-back h3 {
-            color: white;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* Mobile back heading */
-        @media (max-width: 768px) {
-            .flip-card-back h3 {
-                font-size: 1.4rem;
-                margin-bottom: 12px;
-            }
-        }
-
-        .flip-card-back p {
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* Mobile back text */
-        @media (max-width: 768px) {
-            .flip-card-back p {
-                font-size: 0.9rem;
-                margin-bottom: 12px;
-            }
+            margin-bottom: 20px;
         }
 
         .service-features {
             list-style: none;
             margin: 15px 0;
             text-align: left;
-            width: 100%;
-            padding: 0 10px;
-        }
-
-        /* Mobile features */
-        @media (max-width: 768px) {
-            .service-features {
-                margin: 12px 0;
-                padding: 0 5px;
-            }
+            padding: 0;
         }
 
         .service-features li {
@@ -1003,15 +854,7 @@
             position: relative;
             padding-left: 25px;
             line-height: 1.4;
-        }
-
-        /* Mobile feature items */
-        @media (max-width: 768px) {
-            .service-features li {
-                margin-bottom: 6px;
-                font-size: 0.85rem;
-                padding-left: 22px;
-            }
+            color: var(--dark);
         }
 
         .service-features li:before {
@@ -1026,23 +869,16 @@
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 4px;
             font-weight: 600;
-            margin-top: 15px;
+            margin-top: auto;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.9rem;
-            min-height: 44px; /* Minimum touch target size */
-        }
-
-        /* Mobile button */
-        @media (max-width: 768px) {
-            .service-btn {
-                padding: 12px 24px;
-                font-size: 0.95rem;
-                margin-top: 12px;
-            }
+            font-size: 0.95rem;
+            text-align: center;
+            display: block;
+            width: 100%;
         }
 
         .service-btn:hover {
@@ -1350,10 +1186,6 @@
                 bottom: 50px;
             }
             
-            .flip-card {
-                height: 300px;
-            }
-            
             .pricing-card.popular {
                 transform: none;
             }
@@ -1484,11 +1316,6 @@
                 right: 20px;
             }
             
-            .flip-card {
-                height: 300px;
-                max-width: 100%;
-            }
-            
             .stat-number {
                 font-size: 2.5rem;
             }
@@ -1506,21 +1333,17 @@
         }
         
         @media (max-width: 400px) {
-            .flip-card {
-                height: 280px;
-            }
-            
             .service-icon {
                 width: 60px;
                 height: 60px;
                 font-size: 1.8rem;
             }
             
-            .flip-card-front h3 {
+            .service-card h3 {
                 font-size: 1.3rem;
             }
             
-            .flip-card-front p {
+            .service-card p {
                 font-size: 0.85rem;
             }
         }
@@ -1611,7 +1434,40 @@
             <a href="#services" class="btn btn-outline">Our Services</a>
         </div>
     </section>
-    <!-- Services Section with Flip Cards -->
+    
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title-center">
+                <h2>Our Achievements</h2>
+                <p>Years of excellence in printing services</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number" data-count="250">0</div>
+                    <div class="stat-text">Happy Clients</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-text">Years Experience</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-text">Service Types</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section with Regular Cards -->
     <section class="services" id="services">
         <div class="container">
             <div class="section-title-center">
@@ -1620,153 +1476,111 @@
             </div>
             
             <div class="services-grid">
-                <!-- Service 1 - Flip Card -->
-                <div class="flip-card" data-service="1">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-business-time"></i>
-                            </div>
-                            <h3>Business Printing</h3>
-                            <p>Professional business cards, letterheads, envelopes, and corporate stationery.</p>
-                            <span class="flip-hint">Tap to see details →</span>
+                <!-- Service 1 - Regular Card -->
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-business-time"></i>
                         </div>
-                        <div class="flip-card-back">
-                            <h3>Business Printing</h3>
-                            <p>Make a lasting impression with premium corporate materials.</p>
-                            <ul class="service-features">
-                                <li>Visiting Cards</li>
-                                <li>Letterheads & Envelopes</li>
-                                <li>Brochures & Catalogues</li>
-                                <li>Business Forms</li>
-                            </ul>
-                            <button class="service-btn" data-service="1">View Details</button>
-                        </div>
+                        <h3>Business Printing</h3>
+                        <p>Professional business cards, letterheads, envelopes, and corporate stationery.</p>
+                        <ul class="service-features">
+                            <li>Visiting Cards</li>
+                            <li>Letterheads & Envelopes</li>
+                            <li>Brochures & Catalogues</li>
+                            <li>Business Forms</li>
+                        </ul>
+                        <button class="service-btn" data-service="1">View Details</button>
                     </div>
                 </div>
                 
-                <!-- Service 2 - Flip Card -->
-                <div class="flip-card" data-service="2">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-ad"></i>
-                            </div>
-                            <h3>Advertising Materials</h3>
-                            <p>Flyers, brochures, posters, and banners to promote your brand effectively.</p>
-                            <span class="flip-hint">Tap to see details →</span>
+                <!-- Service 2 - Regular Card -->
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-ad"></i>
                         </div>
-                        <div class="flip-card-back">
-                            <h3>Advertising Materials</h3>
-                            <p>Attract attention and promote your brand with eye-catching designs.</p>
-                            <ul class="service-features">
-                                <li>Flyers & Leaflets</li>
-                                <li>Posters & Banners</li>
-                                <li>Billboards & Hoardings</li>
-                                <li>Marketing Collateral</li>
-                            </ul>
-                            <button class="service-btn" data-service="2">View Details</button>
-                        </div>
+                        <h3>Advertising Materials</h3>
+                        <p>Flyers, brochures, posters, and banners to promote your brand effectively.</p>
+                        <ul class="service-features">
+                            <li>Flyers & Leaflets</li>
+                            <li>Posters & Banners</li>
+                            <li>Billboards & Hoardings</li>
+                            <li>Marketing Collateral</li>
+                        </ul>
+                        <button class="service-btn" data-service="2">View Details</button>
                     </div>
                 </div>
                 
-                <!-- Service 3 - Flip Card -->
-                <div class="flip-card" data-service="3">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-tshirt"></i>
-                            </div>
-                            <h3>Garment Printing</h3>
-                            <p>Custom t-shirt printing, uniforms, and promotional apparel with vibrant colors.</p>
-                            <span class="flip-hint">Tap to see details →</span>
+                <!-- Service 3 - Regular Card -->
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-tshirt"></i>
                         </div>
-                        <div class="flip-card-back">
-                            <h3>Garment Printing</h3>
-                            <p>Promote your brand on custom apparel with durable, high-quality prints.</p>
-                            <ul class="service-features">
-                                <li>T-Shirt Printing</li>
-                                <li>Uniforms & Workwear</li>
-                                <li>Promotional Apparel</li>
-                                <li>Event Clothing</li>
-                            </ul>
-                            <button class="service-btn" data-service="3">View Details</button>
-                        </div>
+                        <h3>Garment Printing</h3>
+                        <p>Custom t-shirt printing, uniforms, and promotional apparel with vibrant colors.</p>
+                        <ul class="service-features">
+                            <li>T-Shirt Printing</li>
+                            <li>Uniforms & Workwear</li>
+                            <li>Promotional Apparel</li>
+                            <li>Event Clothing</li>
+                        </ul>
+                        <button class="service-btn" data-service="3">View Details</button>
                     </div>
                 </div>
                 
-                <!-- Service 4 - Flip Card -->
-                <div class="flip-card" data-service="4">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-sign"></i>
-                            </div>
-                            <h3>Signage & Displays</h3>
-                            <p>Indoor and outdoor signs, exhibition displays, vehicle graphics, and window decals.</p>
-                            <span class="flip-hint">Tap to see details →</span>
+                <!-- Service 4 - Regular Card -->
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-sign"></i>
                         </div>
-                        <div class="flip-card-back">
-                            <h3>Signage & Displays</h3>
-                            <p>Maximize visibility with custom signs and displays for any location.</p>
-                            <ul class="service-features">
-                                <li>Indoor & Outdoor Signs</li>
-                                <li>Exhibition Displays</li>
-                                <li>Vehicle Graphics</li>
-                                <li>Window Decals & Stickers</li>
-                            </ul>
-                            <button class="service-btn" data-service="4">View Details</button>
-                        </div>
+                        <h3>Signage & Displays</h3>
+                        <p>Indoor and outdoor signs, exhibition displays, vehicle graphics, and window decals.</p>
+                        <ul class="service-features">
+                            <li>Indoor & Outdoor Signs</li>
+                            <li>Exhibition Displays</li>
+                            <li>Vehicle Graphics</li>
+                            <li>Window Decals & Stickers</li>
+                        </ul>
+                        <button class="service-btn" data-service="4">View Details</button>
                     </div>
                 </div>
                 
-                <!-- Service 5 - Flip Card -->
-                <div class="flip-card" data-service="5">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-box-open"></i>
-                            </div>
-                            <h3>Packaging Printing</h3>
-                            <p>Custom boxes, labels, and packaging solutions that protect and promote your products.</p>
-                            <span class="flip-hint">Tap to see details →</span>
+                <!-- Service 5 - Regular Card -->
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-box-open"></i>
                         </div>
-                        <div class="flip-card-back">
-                            <h3>Packaging Printing</h3>
-                            <p>Enhance brand recognition with custom packaging solutions.</p>
-                            <ul class="service-features">
-                                <li>Product Boxes</li>
-                                <li>Labels & Stickers</li>
-                                <li>Packaging Design</li>
-                                <li>Custom Packaging</li>
-                            </ul>
-                            <button class="service-btn" data-service="5">View Details</button>
-                        </div>
+                        <h3>Packaging Printing</h3>
+                        <p>Custom boxes, labels, and packaging solutions that protect and promote your products.</p>
+                        <ul class="service-features">
+                            <li>Product Boxes</li>
+                            <li>Labels & Stickers</li>
+                            <li>Packaging Design</li>
+                            <li>Custom Packaging</li>
+                        </ul>
+                        <button class="service-btn" data-service="5">View Details</button>
                     </div>
                 </div>
                 
-                <!-- Service 6 - Flip Card -->
-                <div class="flip-card" data-service="6">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-gift"></i>
-                            </div>
-                            <h3>Promotional Items</h3>
-                            <p>Custom mugs, pens, calendars, and other promotional products to keep your brand visible.</p>
-                            <span class="flip-hint">Tap to see details →</span>
+                <!-- Service 6 - Regular Card -->
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-gift"></i>
                         </div>
-                        <div class="flip-card-back">
-                            <h3>Promotional Items</h3>
-                            <p>Keep your brand in front of customers with useful promotional products.</p>
-                            <ul class="service-features">
-                                <li>Mugs & Drinkware</li>
-                                <li>Pens & Stationery</li>
-                                <li>Calendars & Diaries</li>
-                                <li>Custom Giveaways</li>
-                            </ul>
-                            <button class="service-btn" data-service="6">View Details</button>
-                        </div>
+                        <h3>Promotional Items</h3>
+                        <p>Custom mugs, pens, calendars, and other promotional products to keep your brand visible.</p>
+                        <ul class="service-features">
+                            <li>Mugs & Drinkware</li>
+                            <li>Pens & Stationery</li>
+                            <li>Calendars & Diaries</li>
+                            <li>Custom Giveaways</li>
+                        </ul>
+                        <button class="service-btn" data-service="6">View Details</button>
                     </div>
                 </div>
             </div>
@@ -2672,47 +2486,6 @@
             if (navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-        
-        // Flip card click functionality for mobile
-        document.querySelectorAll('.flip-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // On mobile, we want to flip on click instead of hover
-                if (window.innerWidth <= 768) {
-                    // Remove flipped class from all other cards
-                    document.querySelectorAll('.flip-card').forEach(otherCard => {
-                        if (otherCard !== this) {
-                            otherCard.classList.remove('flipped');
-                        }
-                    });
-                    
-                    // Toggle flipped class on clicked card
-                    this.classList.toggle('flipped');
-                }
-            });
-        });
-        
-        // Close flip card when clicking outside on mobile
-        document.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                const flipCards = document.querySelectorAll('.flip-card');
-                const clickedElement = e.target;
-                
-                // Check if click was outside any flip card
-                let clickedInsideFlipCard = false;
-                flipCards.forEach(card => {
-                    if (card.contains(clickedElement)) {
-                        clickedInsideFlipCard = true;
-                    }
-                });
-                
-                // If clicked outside, close all flip cards
-                if (!clickedInsideFlipCard) {
-                    flipCards.forEach(card => {
-                        card.classList.remove('flipped');
-                    });
-                }
             }
         });
         

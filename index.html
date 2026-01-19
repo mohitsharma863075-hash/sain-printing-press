@@ -22,7 +22,367 @@
             width: auto;
         }
         
-        /* New: Gallery Modal */
+        /* NEW: Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* NEW: Notification Toast */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transform: translateX(-120%);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+        }
+        
+        .toast-notification.show {
+            transform: translateX(0);
+        }
+        
+        .toast-notification .close-toast {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        /* NEW: Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: var(--secondary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* NEW: Pricing Table */
+        .pricing-section {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--secondary);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .pricing-header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .pricing-features {
+            padding: 30px;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .pricing-features li.disabled {
+            color: #999;
+        }
+        
+        .pricing-features li.disabled:before {
+            content: "✗";
+            color: #ccc;
+        }
+        
+        .pricing-button {
+            padding: 20px 30px;
+            text-align: center;
+            background: #f9f9f9;
+        }
+        
+        /* NEW: FAQ Section */
+        .faq-section {
+            background: var(--light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .faq-question {
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 30px 20px;
+            max-height: 300px;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        /* NEW: Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: #f57c00;
+        }
+        
+        /* NEW: Statistics Counter */
+        .stats-section {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            color: var(--gray);
+            font-weight: 600;
+        }
+        
+        /* NEW: Service Modal */
+        .service-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .service-modal-content {
+            background: white;
+            margin: 50px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .service-modal-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .service-modal-body {
+            padding: 30px;
+        }
+        
+        .close-service-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        /* Gallery Modal */
         .gallery-modal {
             display: none;
             position: fixed;
@@ -128,7 +488,7 @@
         #topBtn {
             position: fixed;
             bottom: 60px;
-            right: 600px;
+            right: 30px;
             background: var(--primary);
             color: white;
             width: 50px;
@@ -159,8 +519,8 @@
         /* Call Float Button */
         .call-float {
             position: fixed;
-            bottom: 100px;
-            right: 100px;
+            bottom: 120px;
+            right: 30px;
             background: #0573f1;
             color: #fff;
             width: 55px;
@@ -184,8 +544,8 @@
         /* WhatsApp Float Button */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 100px;
+            bottom: 50px;
+            right: 30px;
             background: #25D366;
             color: white;
             width: 55px;
@@ -412,7 +772,7 @@
             opacity: 0.9;
         }
 
-        /* Services Section */
+        /* Services Section - FLIP CARD STYLES */
         .services {
             background-color: var(--light);
         }
@@ -424,34 +784,144 @@
             margin-top: 40px;
         }
 
-        .service-card {
-            background-color: white;
+        /* Flip Card Container */
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            height: 320px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Flip Card Inner Container */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Flip on hover */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and Back of Card */
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        /* Front of Card */
+        .flip-card-front {
+            background-color: white;
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
         }
 
+        /* Service Icon */
         .service-icon {
             background-color: var(--primary);
             color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .flip-card-front h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .flip-card-front p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Back of Card */
+        .flip-card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
             text-align: center;
         }
 
-        .service-content {
-            padding: 25px;
+        .flip-card-back h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
         }
 
-        .service-content h3 {
-            color: var(--primary);
+        .flip-card-back p {
             margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 15px 0;
+            text-align: left;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .service-features li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .service-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .service-btn:hover {
+            background-color: #f57c00;
+            transform: translateY(-3px);
         }
 
         /* Portfolio Section */
@@ -744,9 +1214,26 @@
                 padding: 150px 0 100px;
             }
             
+            .call-float {
+                right: 30px;
+                bottom: 120px;
+            }
+            
             .whatsapp-float {
                 right: 30px;
-                bottom: 100px;
+                bottom: 50px;
+            }
+            
+            .flip-card {
+                height: 300px;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
             }
         }
 
@@ -791,8 +1278,30 @@
             }
             
             .call-float {
-                bottom: 30px;
-                right: 100px;
+                bottom: 120px;
+                right: 30px;
+            }
+            
+            .whatsapp-float {
+                bottom: 50px;
+                right: 30px;
+            }
+            
+            .flip-card {
+                height: 280px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                min-width: 100%;
+                margin-bottom: 10px;
             }
         }
 
@@ -810,7 +1319,9 @@
             }
             
             .services-grid,
-            .portfolio-grid {
+            .portfolio-grid,
+            .pricing-grid,
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -825,13 +1336,45 @@
                 font-size: 20px;
             }
             
+            .call-float {
+                bottom: 100px;
+                right: 20px;
+            }
+            
             .whatsapp-float {
-                right: 90px;
+                bottom: 40px;
+                right: 20px;
+            }
+            
+            .flip-card {
+                height: 320px;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div class="toast-notification" id="toastNotification">
+        <span id="toastMessage">Welcome to Sain Advertising Printing Press!</span>
+        <button class="close-toast" id="closeToast">&times;</button>
+    </div>
+    
     <!-- Header & Navigation -->
     <header>
         <div class="container header-container">
@@ -848,15 +1391,32 @@
                 <ul id="navMenu">
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="tel:9027811888" class="btn">Call Now</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    
+    <!-- Service Modal -->
+    <div id="serviceModal" class="service-modal">
+        <div class="service-modal-content">
+            <div class="service-modal-header">
+                <h3 id="modalServiceTitle">Service Details</h3>
+                <button class="close-service-modal" id="closeServiceModal">&times;</button>
+            </div>
+            <div class="service-modal-body">
+                <div id="modalServiceContent">
+                    <!-- Service details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Gallery Modal -->
     <div id="galleryModal" class="gallery-modal">
@@ -883,8 +1443,19 @@
             <a href="#services" class="btn btn-outline">Our Services</a>
         </div>
     </section>
+    
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                 
+                <div class="stat-item">
+            </div>
+        </div>
+    </section>
 
-    <!-- Services Section -->
+    <!-- Services Section with Flip Cards -->
     <section class="services" id="services">
         <div class="container">
             <div class="section-title-center">
@@ -893,63 +1464,226 @@
             </div>
             
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-business-time"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Business Printing</h3>
-                        <p>Professional business cards, letterheads, envelopes, and corporate stationery that make a lasting impression.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-ad"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Advertising Materials</h3>
-                        <p>Flyers, brochures, posters, and banners designed to attract attention and promote your brand effectively.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Garment Printing</h3>
-                        <p>Custom t-shirt printing, uniforms, and promotional apparel with vibrant colors and durable prints.</p>
+                <!-- Service 1 - Flip Card -->
+                <div class="flip-card" data-service="1">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-business-time"></i>
+                            </div>
+                            <h3>Business Printing</h3>
+                            <p>Professional business cards, letterheads, envelopes, and corporate stationery.</p>
+                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Business Printing</h3>
+                            <p>Make a lasting impression with premium corporate materials.</p>
+                            <ul class="service-features">
+                                <li>Visiting Cards</li>
+                                <li>Letterheads & Envelopes</li>
+                                <li>Brochures & Catalogues</li>
+                                <li>Business Forms</li>
+                            </ul>
+                            <button class="service-btn" data-service="1">View Details</button>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-sign"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Signage & Displays</h3>
-                        <p>Indoor and outdoor signs, exhibition displays, vehicle graphics, and window decals for maximum visibility.</p>
+                <!-- Service 2 - Flip Card -->
+                <div class="flip-card" data-service="2">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-ad"></i>
+                            </div>
+                            <h3>Advertising Materials</h3>
+                            <p>Flyers, brochures, posters, and banners to promote your brand effectively.</p>
+                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Advertising Materials</h3>
+                            <p>Attract attention and promote your brand with eye-catching designs.</p>
+                            <ul class="service-features">
+                                <li>Flyers & Leaflets</li>
+                                <li>Posters & Banners</li>
+                                <li>Billboards & Hoardings</li>
+                                <li>Marketing Collateral</li>
+                            </ul>
+                            <button class="service-btn" data-service="2">View Details</button>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-box-open"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Packaging Printing</h3>
-                        <p>Custom boxes, labels, and packaging solutions that protect your products and enhance brand recognition.</p>
+                <!-- Service 3 - Flip Card -->
+                <div class="flip-card" data-service="3">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <h3>Garment Printing</h3>
+                            <p>Custom t-shirt printing, uniforms, and promotional apparel with vibrant colors.</p>
+                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Garment Printing</h3>
+                            <p>Promote your brand on custom apparel with durable, high-quality prints.</p>
+                            <ul class="service-features">
+                                <li>T-Shirt Printing</li>
+                                <li>Uniforms & Workwear</li>
+                                <li>Promotional Apparel</li>
+                                <li>Event Clothing</li>
+                            </ul>
+                            <button class="service-btn" data-service="3">View Details</button>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-gift"></i>
+                <!-- Service 4 - Flip Card -->
+                <div class="flip-card" data-service="4">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-sign"></i>
+                            </div>
+                            <h3>Signage & Displays</h3>
+                            <p>Indoor and outdoor signs, exhibition displays, vehicle graphics, and window decals.</p>
+                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Signage & Displays</h3>
+                            <p>Maximize visibility with custom signs and displays for any location.</p>
+                            <ul class="service-features">
+                                <li>Indoor & Outdoor Signs</li>
+                                <li>Exhibition Displays</li>
+                                <li>Vehicle Graphics</li>
+                                <li>Window Decals & Stickers</li>
+                            </ul>
+                            <button class="service-btn" data-service="4">View Details</button>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3>Promotional Items</h3>
-                        <p>Custom mugs, pens, calendars, and other promotional products to keep your brand in front of customers.</p>
+                </div>
+                
+                <!-- Service 5 - Flip Card -->
+                <div class="flip-card" data-service="5">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <h3>Packaging Printing</h3>
+                            <p>Custom boxes, labels, and packaging solutions that protect and promote your products.</p>
+                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Packaging Printing</h3>
+                            <p>Enhance brand recognition with custom packaging solutions.</p>
+                            <ul class="service-features">
+                                <li>Product Boxes</li>
+                                <li>Labels & Stickers</li>
+                                <li>Packaging Design</li>
+                                <li>Custom Packaging</li>
+                            </ul>
+                            <button class="service-btn" data-service="5">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 6 - Flip Card -->
+                <div class="flip-card" data-service="6">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <h3>Promotional Items</h3>
+                            <p>Custom mugs, pens, calendars, and other promotional products to keep your brand visible.</p>
+                            <p style="color: var(--secondary); font-size: 0.9rem; margin-top: 10px;">Click to see details →</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Promotional Items</h3>
+                            <p>Keep your brand in front of customers with useful promotional products.</p>
+                            <ul class="service-features">
+                                <li>Mugs & Drinkware</li>
+                                <li>Pens & Stationery</li>
+                                <li>Calendars & Diaries</li>
+                                <li>Custom Giveaways</li>
+                            </ul>
+                            <button class="service-btn" data-service="6">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-title-center">
+                <h2>Pricing Plans</h2>
+                <p>Affordable pricing for all your printing needs</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic Package</h3>
+                        <div class="price">₹999<span>/project</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Up to 100 Business Cards</li>
+                            <li>1 Design Revision</li>
+                            <li>Standard Paper Quality</li>
+                            <li class="disabled">Spot UV Coating</li>
+                            <li class="disabled">Foil Stamping</li>
+                            <li>3-5 Days Delivery</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-tag">MOST POPULAR</div>
+                    <div class="pricing-header">
+                        <h3>Professional Package</h3>
+                        <div class="price">₹2,499<span>/project</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Up to 500 Business Cards</li>
+                            <li>3 Design Revisions</li>
+                            <li>Premium Paper Quality</li>
+                            <li>Spot UV Coating</li>
+                            <li class="disabled">Foil Stamping</li>
+                            <li>2-3 Days Delivery</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Premium Package</h3>
+                        <div class="price">₹4,999<span>/project</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Unlimited Business Cards</li>
+                            <li>Unlimited Revisions</li>
+                            <li>Luxury Paper Quality</li>
+                            <li>Spot UV Coating</li>
+                            <li>Foil Stamping</li>
+                            <li>24-48 Hours Delivery</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="#contact" class="btn">Order Now</a>
                     </div>
                 </div>
             </div>
@@ -1024,6 +1758,68 @@
         </div>
     </section>
     
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-title-center">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our printing services</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the typical turnaround time for printing orders?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Turnaround time varies based on the project complexity and quantity. Standard business cards typically take 2-3 business days, while large format printing may take 3-5 business days. Rush services are available for urgent projects.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you provide design services or only printing?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer both design and printing services. Our design team can create custom designs from scratch, or you can provide your own ready-to-print files. We also provide design consultations to ensure optimal print results.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What file formats do you accept for printing?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all standard print file formats including PDF, AI, EPS, PSD, and high-resolution JPG/PNG files. For best results, we recommend PDF files with CMYK color mode and 300 DPI resolution.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer delivery services?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer delivery services throughout Dadri and surrounding areas. For larger orders, we provide free local delivery. We can also arrange shipping to other locations at additional cost.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept cash, bank transfer, UPI payments, and credit/debit cards. For large orders, we require a 50% deposit upfront with the balance due upon completion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
@@ -1050,6 +1846,20 @@
                     <h4>Amit Kumar</h4>
                     <span>Event Organizer</span>
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for printing tips, special offers, and exclusive discounts.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
             </div>
         </div>
     </section>
@@ -1156,7 +1966,15 @@
                         <input type="text" placeholder="Your Name" required id="name">
                         <input type="email" placeholder="Your Email" required id="email">
                         <input type="tel" placeholder="Your Phone Number" id="phone">
-                        <input type="text" placeholder="Subject" id="subject">
+                        <select id="serviceType" style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                            <option value="">Select Service Type</option>
+                            <option value="business">Business Printing</option>
+                            <option value="advertising">Advertising Materials</option>
+                            <option value="garment">Garment Printing</option>
+                            <option value="signage">Signage & Displays</option>
+                            <option value="packaging">Packaging Printing</option>
+                            <option value="promotional">Promotional Items</option>
+                        </select>
                         <textarea placeholder="Your Message" required id="message"></textarea>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -1192,6 +2010,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -1217,6 +2036,193 @@
     </footer>
 
     <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 800);
+            
+            // Show welcome toast after page loads
+            setTimeout(() => {
+                showToast('Welcome to Sain Advertising Printing Press! How can we help you today?');
+            }, 1000);
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Notification Toast
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+        }
+
+        document.getElementById('closeToast').addEventListener('click', () => {
+            document.getElementById('toastNotification').classList.remove('show');
+        });
+
+        // Statistics Counter Animation
+        function animateCounter() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            statNumbers.forEach(statNumber => {
+                const target = parseInt(statNumber.getAttribute('data-count'));
+                const count = parseInt(statNumber.textContent);
+                const increment = Math.ceil(target / speed);
+                
+                if(count < target) {
+                    statNumber.textContent = count + increment;
+                    setTimeout(animateCounter, 10);
+                } else {
+                    statNumber.textContent = target;
+                }
+            });
+        }
+
+        // Start counter when in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelector('.stats-section').addEventListener('load', () => {
+            observer.observe(document.querySelector('.stats-section'));
+        });
+
+        // Service Details Modal
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceButtons = document.querySelectorAll('.service-btn');
+        const closeServiceModal = document.getElementById('closeServiceModal');
+        
+        // Service details content
+        const serviceDetails = {
+            1: {
+                title: "Business Printing",
+                content: `
+                    <h3>Complete Business Printing Solutions</h3>
+                    <p>Make a professional impression with our premium business printing services. We specialize in creating corporate materials that reflect your brand's quality and professionalism.</p>
+                    
+                    <h4>Services Include:</h4>
+                    <ul>
+                        <li><strong>Visiting Cards:</strong> Standard and premium cardstock options with various finishes</li>
+                        <li><strong>Letterheads & Envelopes:</strong> Custom designed to match your brand identity</li>
+                        <li><strong>Business Forms:</strong> Invoices, receipts, and official documents</li>
+                        <li><strong>Brochures & Catalogues:</strong> Multi-page marketing materials</li>
+                        <li><strong>Presentation Folders:</strong> Custom folders for corporate meetings</li>
+                    </ul>
+                    
+                    <h4>Available Finishes:</h4>
+                    <ul>
+                        <li>Spot UV Coating</li>
+                        <li>Foil Stamping</li>
+                        <li>Embossing & Debossing</li>
+                        <li>Matte & Gloss Lamination</li>
+                    </ul>
+                    
+                    <p><strong>Minimum Order:</strong> 100 pieces<br>
+                    <strong>Turnaround Time:</strong> 2-3 business days</p>
+                `
+            },
+            2: {
+                title: "Advertising Materials",
+                content: `
+                    <h3>Effective Advertising Printing</h3>
+                    <p>Capture attention and promote your brand with our high-impact advertising materials. Perfect for events, promotions, and brand awareness campaigns.</p>
+                    
+                    <h4>Our Advertising Solutions:</h4>
+                    <ul>
+                        <li><strong>Flyers & Leaflets:</strong> Single or double-sided, various sizes</li>
+                        <li><strong>Posters & Banners:</strong> Indoor and outdoor, up to 10ft wide</li>
+                        <li><strong>Billboards & Hoardings:</strong> Large format printing for maximum visibility</li>
+                        <li><strong>Marketing Collateral:</strong> Complete promotional packages</li>
+                        <li><strong>Event Materials:</strong> Tickets, programs, and promotional items</li>
+                    </ul>
+                    
+                    <h4>Special Features:</h4>
+                    <ul>
+                        <li>Weather-resistant materials for outdoor use</li>
+                        <li>Eye-catching metallic inks</li>
+                        <li>Glow-in-the-dark printing</li>
+                        <li>Scratch-off surfaces for promotions</li>
+                    </ul>
+                    
+                    <p><strong>Sample Available:</strong> Yes<br>
+                    <strong>Bulk Discounts:</strong> Available for orders above 1000 pieces</p>
+                `
+            }
+            // Add details for other services (3-6) similarly
+        };
+
+        serviceButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const serviceId = button.getAttribute('data-service');
+                const service = serviceDetails[serviceId];
+                
+                if(service) {
+                    document.getElementById('modalServiceTitle').textContent = service.title;
+                    document.getElementById('modalServiceContent').innerHTML = service.content;
+                    serviceModal.style.display = 'block';
+                }
+            });
+        });
+
+        closeServiceModal.addEventListener('click', () => {
+            serviceModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if(e.target === serviceModal) {
+                serviceModal.style.display = 'none';
+            }
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                const icon = question.querySelector('.faq-icon');
+                icon.classList.toggle('fa-plus');
+                icon.classList.toggle('fa-minus');
+            });
+        });
+
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            if(validateEmail(email)) {
+                showToast('Thank you for subscribing to our newsletter!');
+                this.reset();
+            } else {
+                showToast('Please enter a valid email address.');
+            }
+        });
+
         // Mobile Navigation Toggle
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
@@ -1339,18 +2345,21 @@
             if (!name || !email || !message) {
                 formMessage.textContent = 'Please fill in all required fields.';
                 formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
                 return;
             }
             
             if (!validateEmail(email)) {
                 formMessage.textContent = 'Please enter a valid email address.';
                 formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
                 return;
             }
             
             // Simulate form submission
             formMessage.textContent = 'Thank you! Your message has been sent. We will contact you soon.';
             formMessage.className = 'form-message success';
+            formMessage.style.display = 'block';
             
             // Reset form
             contactForm.reset();
@@ -1359,6 +2368,9 @@
             setTimeout(() => {
                 formMessage.style.display = 'none';
             }, 5000);
+            
+            // Show toast notification
+            showToast('Thank you for contacting Sain Printing Press! We will get back to you soon.');
         });
         
         function validateEmail(email) {
@@ -1401,6 +2413,33 @@
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
+        
+        // Flip card click functionality for mobile
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // On mobile, we want to flip on click instead of hover
+                if (window.innerWidth <= 768) {
+                    this.querySelector('.flip-card-inner').classList.toggle('flipped');
+                }
+            });
+        });
+        
+        // Start counter animation when stats section is in view
+        const statsSection = document.querySelector('.stats-section');
+        const observerOptions = {
+            threshold: 0.3
+        };
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        statsObserver.observe(statsSection);
     </script>
 </body>
 </html>
